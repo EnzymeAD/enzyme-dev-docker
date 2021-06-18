@@ -1,4 +1,5 @@
 # enzyme-dev-docker
+[![Publish Docker images](https://github.com/tgymnich/enzyme-dev-docker/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/tgymnich/enzyme-dev-docker/actions/workflows/docker-publish.yml)
 
 Dockerfiles for setting up an environment for building and testing Enzyme.
 
