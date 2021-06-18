@@ -1,6 +1,6 @@
 # enzyme-dev-docker
 
-Dockerfiles for setting up an environment for building and testing enzyme.
+Dockerfiles for setting up an environment for building and testing Enzyme.
 
 # VSCode development container
 
