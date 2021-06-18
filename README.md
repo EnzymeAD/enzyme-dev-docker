@@ -12,6 +12,9 @@ Create a `devcontainer.json` in your project:
 {
     "name": "Enzyme",
     "image": "ghcr.io/tgymnich/enzyme-dev-docker/ubuntu-20-llvm-11:latest",
+    // don't mount local directory (better performance)
+    // "workspaceMount": "source=enzyme-source,target=/workspace,type=volume",
+    // "workspaceFolder": "/workspace",
     "mounts": [
         "source=enzyme-bashhistory,target=/commandhistory,type=volume",
         "source=enzyme-extensions,target=/root/.vscode-server/extensions,type=volume",
