@@ -9,7 +9,7 @@ Dockerfiles for setting up an environment for building and testing Enzyme.
 
 Create a `devcontainer.json` in your project:
 ```
-// available images ubuntu versions: [20, 18]
+// available ubuntu versions: [20, 18]
 // available llvm versions: [7, 8, 9, 10, 11, 12]
 {
     "name": "Enzyme",
@@ -27,7 +27,7 @@ Create a `devcontainer.json` in your project:
 ## remote development container
 
 ```
-// available images ubuntu versions: [20, 18]
+// available ubuntu versions: [20, 18]
 // available llvm versions: [7, 8, 9, 10, 11, 12]
 {
     "name": "Enzyme",
