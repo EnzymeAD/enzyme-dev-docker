@@ -3,7 +3,7 @@
 
 Dockerfiles for setting up an environment for building and testing Enzyme.
 
-# VSCode development container
+# local development container
 
 Create a `devcontainer.json` in your project:
 ```
@@ -20,4 +20,28 @@ Create a `devcontainer.json` in your project:
     ],
     "postCreateCommand": "sudo chown vscode ./enzyme/build"
 }
+```
+
+# remote development container
+
+```
+// available images ubuntu versions: [20, 18]
+// available llvm versions: [7, 8, 9, 10, 11, 12]
+{
+    "name": "Enzyme",
+    "image": "ghcr.io/tgymnich/enzyme-dev-docker/ubuntu-20-llvm-11:latest",
+    "workspaceFolder": "/workspace",
+    "workspaceMount": "source=enzyme-source,target=/workspace,type=volume"
+    "mounts": [
+        "source=enzyme-bashhistory,target=/commandhistory,type=volume",
+        "source=enzyme-extensions,target=/root/.vscode-server/extensions,type=volume",
+        "source=enzyme-extensions-insiders,target=/root/.vscode-server-insiders/extensions,type=volume",
+    ],
+    "postCreateCommand": "sudo chown vscode ./enzyme/build"
+}
+```
+
+set the docker host in `settings.json`:
+```
+"docker.host":"ssh://your-remote-user@your-remote-machine-fqdn-or-ip-here"
 ```
