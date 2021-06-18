@@ -3,7 +3,9 @@
 
 Dockerfiles for setting up an environment for building and testing Enzyme.
 
-# local development container
+# VSCode Dev Container
+
+## local development container
 
 Create a `devcontainer.json` in your project:
 ```
@@ -22,7 +24,7 @@ Create a `devcontainer.json` in your project:
 }
 ```
 
-# remote development container
+## remote development container
 
 ```
 // available images ubuntu versions: [20, 18]
