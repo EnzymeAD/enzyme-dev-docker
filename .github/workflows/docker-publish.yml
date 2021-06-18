@@ -2,6 +2,7 @@ name: Publish Docker images
 on:
   release:
     types: [published]
+
 jobs:
   push_to_registry:
     name: Push Docker image to GitHub Packages
@@ -14,15 +15,33 @@ jobs:
     permissions:
       packages: write
       contents: read
+    env:
+      REGISTRY: ghcr.io
+      IMAGE_NAME: ${{ github.repository }}/enzyme-dev-ubuntu-${{ matrix.ubuntu }}-llvm-${{ matrix.llvm }}
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
       - name: Log in to GitHub Docker Registry
         uses: docker/login-action@v1
         with:
-          registry: ghcr.io
+          registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Extract Docker metadata
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+
+      # Build and push Docker image with Buildx (don't push on PR)
+      # https://github.com/docker/build-push-action
+      - name: Build and push Docker image
+        uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
+        with:
+          context: .
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
       - name: Build container image
         uses: docker/build-push-action@v2
         with:
@@ -30,6 +49,5 @@ jobs:
           build-args: |
             LLVM_VERSION: ${{ matrix.llvm }}
             UBUNTU_VERSION: ${{ matrix.ubuntu }}.04
-          tags: |
-            ghcr.io/${{ github.repository }}/enzyme-dev-ubuntu-${{ matrix.ubuntu }}-llvm-${{ matrix.llvm }}:${{ github.sha }}
-            ghcr.io/${{ github.repository }}/enzyme-dev-ubuntu-${{ matrix.ubuntu }}-llvm-${{ matrix.llvm }}:${{ github.ref }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
