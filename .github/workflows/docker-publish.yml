@@ -1,0 +1,35 @@
+name: Publish Docker images
+on:
+  release:
+    types: [published]
+jobs:
+  push_to_registry:
+    name: Push Docker image to GitHub Packages
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        llvm: ["7", "8", "9", "10", "11", "12"]
+        ubuntu: ["20", "18"]
+    permissions:
+      packages: write
+      contents: read
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+      - name: Log in to GitHub Docker Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build container image
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          build-args: |
+            LLVM_VERSION: ${{ matrix.llvm }}
+            UBUNTU_VERSION: ${{ matrix.ubuntu }}.04
+          tags: |
+            ghcr.io/${{ github.repository }}/enzyme-dev-ubuntu-${{ matrix.ubuntu }}-llvm-${{ matrix.llvm }}:${{ github.sha }}
+            ghcr.io/${{ github.repository }}/enzyme-dev-ubuntu-${{ matrix.ubuntu }}-llvm-${{ matrix.llvm }}:${{ github.ref }}
