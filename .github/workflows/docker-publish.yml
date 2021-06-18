@@ -46,7 +46,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          build-args: |
+          build-args:
             LLVM_VERSION: ${{ matrix.llvm }}
             UBUNTU_VERSION: ${{ matrix.ubuntu }}.04
           tags: ${{ steps.meta.outputs.tags }}
