@@ -17,6 +17,7 @@ Create a `devcontainer.json` in your project:
         "source=enzyme-extensions,target=/root/.vscode-server/extensions,type=volume",
         "source=enzyme-extensions-insiders,target=/root/.vscode-server-insiders/extensions,type=volume",
         "source=enzyme-build,target=${containerWorkspaceFolder}/enzyme/build,type=volume",
-    ]
+    ],
+    "postCreateCommand": "sudo chown vscode ./enzyme/build"
 }
 ```
