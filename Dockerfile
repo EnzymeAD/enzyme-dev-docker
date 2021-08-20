@@ -26,6 +26,7 @@ RUN apt-get -q update \
     && apt-get autoremove -y --purge \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
+    && if [ $LLVM_VERSION -lt 9 ]; then sudo apt-get install -y llvm-7-tools; fi
 
 RUN SNIPPET="export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhistory/.bash_history" \
     && mkdir /commandhistory \
