@@ -1,6 +1,6 @@
 ARG UBUNTU_VERSION=20.04
 
-FROM ubuntu:$UBUNTU_VERSION
+FROM ubuntu:$UBUNTU_VERSION AS base
 
 ARG LLVM_VERSION=12
 
@@ -22,11 +22,28 @@ RUN apt-get -q update \
     && useradd -s /bin/bash --uid $USER_UID --gid $USER_GID -m $USERNAME \
     && apt-get install -y --no-install-recommends sudo \
     && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
-    && chmod 0440 /etc/sudoers.d/$USERNAME \
-    && apt-get autoremove -y --purge \
+    && chmod 0440 /etc/sudoers.d/$USERNAME
+    
+FROM base AS llvm-lt-7
+RUN sudo apt-get install -y llvm-7-tools
+ENV PATH="/usr/lib/llvm-7/bin:${PATH}"
+
+FROM base AS llvm-lt-8
+RUN sudo apt-get install -y llvm-7-tools
+ENV PATH="/usr/lib/llvm-7/bin:${PATH}"
+
+FROM base AS llvm-lt-9
+
+FROM base AS llvm-lt-10
+
+FROM base AS llvm-lt-11
+
+FROM base AS llvm-lt-12
+
+FROM llvm-lt-${LLVM_VERSION} AS final
+RUN apt-get autoremove -y --purge \
     && apt-get clean -y \
-    && rm -rf /var/lib/apt/lists/* \
-    && if [ $LLVM_VERSION -lt 9 ]; then sudo apt-get install -y llvm-7-tools; export PATH="/usr/lib/llvm-7/bin:${PATH}"; fi
+    && rm -rf /var/lib/apt/lists/*
 
 RUN SNIPPET="export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhistory/.bash_history" \
     && mkdir /commandhistory \
