@@ -41,6 +41,8 @@ FROM base AS llvm-lt-11
 
 FROM base AS llvm-lt-12
 
+FROM base AS llvm-lt-13
+
 FROM llvm-lt-${LLVM_VERSION} AS final
 RUN apt-get autoremove -y --purge \
     && apt-get clean -y \
