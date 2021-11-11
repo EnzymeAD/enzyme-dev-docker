@@ -12,7 +12,7 @@ jobs:
       matrix:
         llvm: ["7", "8", "9", "10", "11", "12", "13"]
         ubuntu: ["20", "18"]
-        platform: ["linux/386", "linux/amd64", "linux/arm/v7", "linux/arm64"]
+        platform: ["linux/amd64", "linux/arm64"]
     permissions:
       packages: write
       contents: read
