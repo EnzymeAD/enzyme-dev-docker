@@ -13,7 +13,7 @@ Create a `devcontainer.json` in your project:
 // available llvm versions: [7, 8, 9, 10, 11, 12, 13]
 {
     "name": "Enzyme",
-    "image": " ghcr.io/enzymead/enzyme-dev-docker/ubuntu-20-llvm-12:latest",
+    "image": "ghcr.io/enzymead/enzyme-dev-docker/ubuntu-20-llvm-12:latest",
     "mounts": [
         "source=enzyme-bashhistory,target=/commandhistory,type=volume",
         "source=enzyme-extensions,target=/root/.vscode-server/extensions,type=volume",
