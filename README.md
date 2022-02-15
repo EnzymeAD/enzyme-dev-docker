@@ -39,7 +39,7 @@ Create a `devcontainer.json` in your project:
     "name": "Enzyme",
     "image": "ghcr.io/enzymead/enzyme-dev-docker/ubuntu-20-llvm-12:latest",
     "workspaceFolder": "/workspace",
-    "workspaceMount": "source=enzyme-source,target=/workspace,type=volume"
+    "workspaceMount": "source=enzyme-source,target=/workspace,type=volume",
     "mounts": [
         "source=enzyme-bashhistory,target=/commandhistory,type=volume",
         "source=enzyme-extensions,target=/root/.vscode-server/extensions,type=volume",
