@@ -74,7 +74,7 @@ jobs:
           cache-to: type=gha,mode=max
           
       - name: Build and push Docker image (amd64)
-        if: matrix.ubuntu != 18 || matrix.llvm < 9
+        if: matrix.ubuntu != 18 && matrix.llvm < 9
         uses: docker/build-push-action@v3
         with:
           context: .
