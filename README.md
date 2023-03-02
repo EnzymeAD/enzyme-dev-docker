@@ -15,8 +15,8 @@ docker pull ghcr.io/enzymead/enzyme-dev-docker/ubuntu-20-llvm-12:latest
 
 Create a `devcontainer.json` in your project:
 ```
-// available ubuntu versions: [20, 18]
-// available llvm versions: [7, 8, 9, 10, 11, 12, 13]
+// available ubuntu versions: [22, 20, 18]
+// available llvm versions: [7, 8, 9, 10, 11, 12, 13, 14, 15]
 {
     "name": "Enzyme",
     "image": "ghcr.io/enzymead/enzyme-dev-docker/ubuntu-20-llvm-12:latest",
