@@ -22,10 +22,6 @@ jobs:
             llvm: 7
           - ubuntu: 20
             llvm: 8
-          - ubuntu: 20
-            llvm: 7
-          - ubuntu: 20
-            llvm: 8
           - ubuntu: 22
             llvm: 7
           - ubuntu: 22
