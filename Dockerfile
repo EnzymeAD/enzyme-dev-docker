@@ -56,7 +56,7 @@ RUN mkdir -p /home/$USERNAME/.vscode-server/extensions \
         /home/$USERNAME/.vscode-server \
         /home/$USERNAME/.vscode-server-insiders
         
-RUN mkdir -p /workspaces/Enzyme/build
+RUN mkdir -p /workspaces/Enzyme/build \
     && chown -R $USERNAME workspaces/Enzyme/build
 
 ENV DEBIAN_FRONTEND=
