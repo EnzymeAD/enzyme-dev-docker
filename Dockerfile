@@ -17,21 +17,11 @@ RUN apt-get -q update \
     && apt-add-repository "deb http://apt.llvm.org/`lsb_release -cs`/ llvm-toolchain-`lsb_release -cs`-$LLVM_VERSION main" || true \
     && apt-get -q update \
     && apt-get install -y --no-install-recommends sudo git ssh zlib1g-dev automake autoconf cmake make lldb ninja-build gcc g++ gfortran build-essential libtool llvm-$LLVM_VERSION-dev clang-format clang-$LLVM_VERSION libclang-$LLVM_VERSION-dev libomp-$LLVM_VERSION-dev libblas-dev libeigen3-dev libboost-dev python3 python3-pip \
-    && python3 -m pip install --upgrade pip setuptools \
-    && python3 -m pip install lit pathlib2 \
-    && touch /usr/lib/llvm-$LLVM_VERSION/bin/yaml-bench \
+    && python3 -m pip install --upgrade pip setuptools lit pathlib2 \
     && groupadd --gid $USER_GID $USERNAME \
     && useradd -s /bin/bash --uid $USER_UID --gid $USER_GID -m $USERNAME \
     && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
     && chmod 0440 /etc/sudoers.d/$USERNAME
-    
-FROM base AS llvm-lt-7
-RUN apt-get install -y llvm-7-tools
-ENV PATH="/usr/lib/llvm-7/bin:${PATH}"
-
-FROM base AS llvm-lt-8
-RUN apt-get install -y llvm-7-tools
-ENV PATH="/usr/lib/llvm-7/bin:${PATH}"
 
 FROM base AS llvm-lt-9
 

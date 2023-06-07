@@ -11,25 +11,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        llvm: [7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
-        ubuntu: [18, 20, 22]
+        llvm: [9, 10, 11, 12, 13, 14, 15, 16]
+        ubuntu: [20, 22]
         exclude:
-          - ubuntu: 18
-            llvm: 11
-          - ubuntu: 18
-            llvm: 14
-          - ubuntu: 18
-            llvm: 15
-          - ubuntu: 18
-            llvm: 16
-          - ubuntu: 20
-            llvm: 7
-          - ubuntu: 20
-            llvm: 8
-          - ubuntu: 22
-            llvm: 7
-          - ubuntu: 22
-            llvm: 8
           - ubuntu: 22
             llvm: 9
           - ubuntu: 22
@@ -71,7 +55,6 @@ jobs:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           
       - name: Build and push Docker image (amd64 & arm64)
-        if: matrix.ubuntu == 18 || matrix.llvm >= 9
         uses: docker/build-push-action@v4
         with:
           context: .
@@ -85,20 +68,3 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-          
-      - name: Build and push Docker image (amd64)
-        if: matrix.ubuntu != 18 && matrix.llvm < 9
-        uses: docker/build-push-action@v4
-        with:
-          context: .
-          builder: ${{ steps.buildx.outputs.name }}
-          platforms: linux/amd64
-          build-args: | 
-            LLVM_VERSION=${{ matrix.llvm }}
-            UBUNTU_VERSION=${{ matrix.ubuntu }}.04
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-
