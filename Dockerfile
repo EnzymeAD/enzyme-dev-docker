@@ -23,23 +23,8 @@ RUN apt-get -q update \
     && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
     && chmod 0440 /etc/sudoers.d/$USERNAME
 
-FROM base AS llvm-lt-9
+FROM base AS final
 
-FROM base AS llvm-lt-10
-
-FROM base AS llvm-lt-11
-
-FROM base AS llvm-lt-12
-
-FROM base AS llvm-lt-13
-
-FROM base AS llvm-lt-14
-
-FROM base AS llvm-lt-15
-
-FROM base AS llvm-lt-16
-
-FROM llvm-lt-${LLVM_VERSION} AS final
 RUN apt-get autoremove -y --purge \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
