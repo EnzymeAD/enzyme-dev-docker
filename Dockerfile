@@ -1,7 +1,7 @@
 ARG UBUNTU_VERSION=20.04
 ARG LLVM_VERSION=12
 
-FROM ubuntu:$UBUNTU_VERSION AS base
+FROM ubuntu:$UBUNTU_VERSION
 
 ARG LLVM_VERSION
 
@@ -22,8 +22,6 @@ RUN apt-get -q update \
     && useradd -s /bin/bash --uid $USER_UID --gid $USER_GID -m $USERNAME \
     && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
     && chmod 0440 /etc/sudoers.d/$USERNAME
-
-FROM base AS final
 
 RUN apt-get autoremove -y --purge \
     && apt-get clean -y \
