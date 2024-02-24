@@ -16,10 +16,10 @@ docker pull ghcr.io/enzymead/enzyme-dev-docker/ubuntu-20-llvm-12:latest
 Create a `devcontainer.json` in your project:
 ```
 // available ubuntu versions: [20, 22]
-// available llvm versions: [11, 12, 13, 14, 15, 16, 17]
+// available llvm versions: [11, 12, 13, 14, 15, 16, 17, 18]
 {
     "name": "Enzyme",
-    "image": "ghcr.io/enzymead/enzyme-dev-docker/ubuntu-20-llvm-12:latest",
+    "image": "ghcr.io/enzymead/enzyme-dev-docker/ubuntu-22-llvm-16:latest",
     "mounts": [
         "source=enzyme-bashhistory,target=/commandhistory,type=volume",
         "source=enzyme-extensions,target=/root/.vscode-server/extensions,type=volume",
@@ -34,10 +34,10 @@ Create a `devcontainer.json` in your project:
 
 ```
 // available ubuntu versions: [20, 22]
-// available llvm versions: [11, 12, 13, 14, 15, 16, 17]
+// available llvm versions: [11, 12, 13, 14, 15, 16, 17, 18]
 {
     "name": "Enzyme",
-    "image": "ghcr.io/enzymead/enzyme-dev-docker/ubuntu-20-llvm-12:latest",
+    "image": "ghcr.io/enzymead/enzyme-dev-docker/ubuntu-22-llvm-16:latest",
     "workspaceFolder": "/workspace",
     "workspaceMount": "source=enzyme-source,target=/workspace,type=volume",
     "mounts": [
