@@ -6,7 +6,7 @@ Dockerfiles for setting up an environment for building and testing Enzyme.
 # Docker
 
 ```
-docker pull ghcr.io/enzymead/enzyme-dev-docker/ubuntu-20-llvm-12:latest
+docker pull ghcr.io/enzymead/enzyme-dev-docker/ubuntu-22-llvm-16:latest
 ```
 
 # VSCode Dev Container
