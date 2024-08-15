@@ -60,7 +60,6 @@ jobs:
           build-args: | 
             LLVM_VERSION=${{ matrix.llvm }}
             UBUNTU_VERSION=${{ matrix.ubuntu }}.04
-          push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
