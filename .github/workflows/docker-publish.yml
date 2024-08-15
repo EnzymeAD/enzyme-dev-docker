@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        llvm: [11, 12, 13, 14, 15, 16, 17, 18]
+        llvm: [11, 12, 13, 14, 15, 16, 17, 18, 19]
         ubuntu: [20, 22]
         exclude:
           - ubuntu: 22
