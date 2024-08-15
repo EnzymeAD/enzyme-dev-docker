@@ -1,8 +1,6 @@
 name: Publish Docker images
 on:
   push:
-    tags:
-      - '*'
 
 jobs:
   push_to_registry:
@@ -54,6 +52,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
+          push: ${{ startsWith(github.ref, 'refs/tags/v') }}
           builder: ${{ steps.buildx.outputs.name }}
           platforms: linux/amd64,linux/arm64
           provenance: false
