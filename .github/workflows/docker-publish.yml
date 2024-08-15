@@ -16,6 +16,18 @@ jobs:
             llvm: 11
           - ubuntu: 22
             llvm: 12
+          - ubuntu: 24
+            llvm: 11
+          - ubuntu: 24
+            llvm: 12
+          - ubuntu: 24
+            llvm: 13
+          - ubuntu: 24
+            llvm: 14
+          - ubuntu: 24
+            llvm: 15
+          - ubuntu: 24
+            llvm: 16
     permissions:
       packages: write
       contents: read
