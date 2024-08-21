@@ -15,8 +15,8 @@ docker pull ghcr.io/enzymead/enzyme-dev-docker/ubuntu-22-llvm-16:latest
 
 Create a `devcontainer.json` in your project:
 ```
-// available ubuntu versions: [20, 22]
-// available llvm versions: [11, 12, 13, 14, 15, 16, 17, 18]
+// available ubuntu versions: [20, 22, 24]
+// available llvm versions: [11, 12, 13, 14, 15, 16, 17, 18, 19]
 {
     "name": "Enzyme",
     "image": "ghcr.io/enzymead/enzyme-dev-docker/ubuntu-22-llvm-16:latest",
@@ -33,8 +33,8 @@ Create a `devcontainer.json` in your project:
 ## remote development container
 
 ```
-// available ubuntu versions: [20, 22]
-// available llvm versions: [11, 12, 13, 14, 15, 16, 17, 18]
+// available ubuntu versions: [20, 22, 24]
+// available llvm versions: [11, 12, 13, 14, 15, 16, 17, 18, 19]
 {
     "name": "Enzyme",
     "image": "ghcr.io/enzymead/enzyme-dev-docker/ubuntu-22-llvm-16:latest",
