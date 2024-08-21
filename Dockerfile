@@ -14,7 +14,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get -q update \
     && apt-get install -y --no-install-recommends ca-certificates software-properties-common curl gnupg2 \
     && curl -fsSL https://apt.llvm.org/llvm-snapshot.gpg.key|apt-key add - \
-    && apt-add-repository "deb http://apt.llvm.org/`lsb_release -cs`/ llvm-toolchain-`lsb_release -cs`-$LLVM_VERSION main" \
+    && apt-add-repository -y "deb http://apt.llvm.org/`lsb_release -cs`/ llvm-toolchain-`lsb_release -cs`-$LLVM_VERSION main" \
     && apt-get -q update \
     && apt-get install -y --no-install-recommends sudo git ssh zlib1g-dev libzstd-dev automake autoconf cmake make lldb ninja-build gcc g++ gfortran build-essential libtool llvm-$LLVM_VERSION-dev clang-format clangd clang-$LLVM_VERSION libclang-$LLVM_VERSION-dev libomp-$LLVM_VERSION-dev libblas-dev libeigen3-dev libboost-dev python3 python3-pip \
     && groupadd --gid $USER_GID $USERNAME \
