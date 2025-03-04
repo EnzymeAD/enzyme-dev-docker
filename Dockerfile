@@ -17,7 +17,7 @@ RUN apt-get -q update \
     && curl -fsSL https://apt.llvm.org/llvm-snapshot.gpg.key|apt-key add - \
     && apt-add-repository -y "deb http://apt.llvm.org/`lsb_release -cs`/ llvm-toolchain-`lsb_release -cs`-$LLVM_VERSION main" \
     && apt-get -q update \
-    && apt-get install -y --no-install-recommends sudo git ssh zlib1g-dev libzstd-dev automake autoconf cmake make lldb ninja-build gcc g++ gfortran build-essential libtool llvm-$LLVM_VERSION-dev clang-format clangd clang-$LLVM_VERSION libclang-$LLVM_VERSION-dev libomp-$LLVM_VERSION-dev libblas-dev libeigen3-dev libboost-dev python3 python3-pip \
+    && apt-get install -y --no-install-recommends sudo git ssh zlib1g-dev libzstd-dev automake autoconf cmake make lldb ninja-build gcc g++ gfortran build-essential libtool llvm-$LLVM_VERSION-dev clang-format clangd clang-$LLVM_VERSION lld-$LLVM_VERSION libclang-$LLVM_VERSION-dev libomp-$LLVM_VERSION-dev libblas-dev libeigen3-dev libboost-dev python3 python3-pip \
     && groupadd --gid $USER_GID $USERNAME \
     && useradd -s /bin/bash --uid $USER_UID --gid $USER_GID -m $USERNAME \
     && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
